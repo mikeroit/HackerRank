@@ -1,4 +1,5 @@
 use std::io;
+use std::str;
 
 // score struct
 // struct to hold score
@@ -20,39 +21,13 @@ impl Score
     }
 }
 
-// constructor for score struct
-//#[allow(dead_code)]
-//impl Score
-//{
-    //#[allow(unused_variables)]
-    //pub fn new(nums: &Vec<&str>) -> Score
-    //{
-        //Score
-        //{
-            //// TODO not implimented
-            //clarity: nums[0].parse().unwrap(),
-            //originality: nums[1].parse().unwrap(),
-            //difficulty: nums[2].parse().unwrap(),
-        //}
-    //}
-//}
-
-
 #[allow(unused_variables)]
 fn main() 
 {
-    test_objects();
-}
-
-// testing
-// structs
-fn test_objects()
-{
-    // ZONE: read inputs to `&str` vars
+    // read inputs to `&str` vars
     // declare variables to store the string inputs
     let mut alice_score = String::new();
     let mut bob_score = String::new();
-
 
     // read the inputs
     io::stdin().read_line(&mut alice_score).ok().expect("error reading");
@@ -61,17 +36,73 @@ fn test_objects()
     // parse the strings to Vecs
     let alice_splits: Vec<&str> = alice_score.split(' ').collect();
     let bob_splits: Vec<&str> = bob_score.split(' ').collect();
-    println!("{}{}", bob_splits[0],  bob_splits[0]);
 
-    // ZONE: convert inputs to ints
+    // convert inputs to ints, store in structs
     let bob_struct: Score = Score{ 
         name: String::from("Bob"),
-        clarity: bob_splits[0].parse::<i32>().unwrap(),
-        originality: bob_splits[1].parse::<i32>().unwrap(), 
-        difficulty: bob_splits[2].parse::<i32>().unwrap() 
+        clarity: str::FromStr::from_str(bob_splits[0]).unwrap(),
+        originality: str::FromStr::from_str(bob_splits[1]).unwrap(),
+        difficulty: str::FromStr::from_str(bob_splits[2]).unwrap()
     };
 
-    bob_struct.print();
+    let alice_struct: Score = Score{ 
+        name: String::from("Alice"),
+        clarity: str::FromStr::from_str(alice_splits[0]).unwrap(),
+        originality: str::FromStr::from_str(alice_splits[1]).unwrap(),
+        difficulty: str::FromStr::from_str(alice_splits[2]).unwrap()
+    };
+
+    let mut bob_total = 0;
+    let mut alice_total = 0;
+
+    if(bob_struct.clarity > alice_struct.clarity)
+    {
+        bob_total = bob_total + 1;
+    }
+    else if(alice_struct.clarity > bob_struct.clarity)
+    {
+        alice_total = alice_total + 1;
+    }
+
+    if(bob_struct.originality > alice_struct.originality)
+    {
+        bob_total = bob_total + 1;
+    }
+    else if(alice_struct.originality > bob_struct.originality)
+    {
+        alice_total = alice_total + 1;
+    }
+
+    if(bob_struct.difficulty > alice_struct.difficulty)
+    {
+        bob_total = bob_total + 1;
+    }
+    else if(alice_struct.difficulty > bob_struct.difficulty)
+    {
+        alice_total = alice_total + 1;
+    }
+
+    println!("{0}{1}", alice_total, bob_total);
+
+}
+
+// testing
+// structs
+#[allow(unused_variables)]
+#[test]
+fn test_objects()
+{
+    // setup test
+    let bob_splits: Vec<&str> = vec!("1", "2", "3");
+    let alice_splits: Vec<&str> = vec!("4", "5", "6");
+    
+    // convert inputs to ints
+    let bob_struct: Score = Score{ 
+        name: String::from("Bob"),
+        clarity: bob_splits[0].parse().ok().expect("wanted a num"),
+        originality: bob_splits[0].parse().ok().expect("wanted a num"),
+        difficulty: bob_splits[0].parse().ok().expect("wanted a num")
+    };
 }
 
 
