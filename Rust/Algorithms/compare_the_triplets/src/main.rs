@@ -34,8 +34,8 @@ fn main()
     io::stdin().read_line(&mut bob_score).ok().expect("error reading");
 
     // parse the strings to Vecs
-    let alice_splits: Vec<&str> = alice_score.split(' ').collect();
-    let bob_splits: Vec<&str> = bob_score.split(' ').collect();
+    let alice_splits: Vec<&str> = alice_score.split_whitespace().collect();
+    let bob_splits: Vec<&str> = bob_score.split_whitespace().collect();
 
     // convert inputs to ints, store in structs
     let bob_struct: Score = Score{ 
