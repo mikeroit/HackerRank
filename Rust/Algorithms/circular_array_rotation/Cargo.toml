@@ -1,6 +1,10 @@
 [package]
 name = "circular_array_rotation"
 version = "0.1.0"
+<<<<<<< HEAD
 authors = ["Mike Roitman <mikeroit@gmail.com>"]
+=======
+authors = ["mikeroit <mikeroit@gmail.com>"]
+>>>>>>> 91a7213805db97d571197921869e648dcc7efef5
 
 [dependencies]
