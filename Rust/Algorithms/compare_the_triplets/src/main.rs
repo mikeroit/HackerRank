@@ -1,18 +1,20 @@
 use std::io;
 
 // make a struct to hold a score
-struct score
+#[allow(dead_code)]
+struct Score
 {
     clarity: i32,
     originality: i32,
     difficulty: i32
 }
 
-impl score
+#[allow(dead_code, unused_variables)]
+impl Score
 {
-    pub fn new(nums: &Vec<&str>) -> score
+    pub fn new(nums: &Vec<&str>) -> Score
     {
-        score
+        Score
         {
             // TODO not implimented
             clarity: 0,
@@ -21,9 +23,7 @@ impl score
         }
     }
 }
-
-
-#[allow(unused_variables)]
+#[allow(unused_variables, unused_mut)]
 fn main() 
 {
     // declare variables to store the string inputs
