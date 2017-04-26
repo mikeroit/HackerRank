@@ -1,0 +1,6 @@
+[package]
+name = "apples_and_oranges"
+version = "0.1.0"
+authors = ["Mike Roitman <mikeroit@gmail.com>"]
+
+[dependencies]
